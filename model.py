@@ -2,7 +2,7 @@ class TipModel:
     def __init__(self, bill_amount = 0, tip_percent = 0):
         self.__bill_amount = bill_amount
         self.__tip_percent = tip_percent
-
+        self.num_people = 1
 
     # Creates a getter property called "bill_amount"
     # Use Case: print(obj_name.bill_amount)
@@ -10,11 +10,23 @@ class TipModel:
     def bill_amount(self):
         return self.__bill_amount
 
+    @property
+    def num_people(self):
+        return self._num_people
+    @num_people.setter
+    def num_pople(self, value):
+        val = int(value)
+        if val<1:
+            raise ValueError("Number of people must be at least 1")
+        self.num_people = val
 
     @property
     def tip_percent(self):
         return self.__tip_percent
 
+    @property
+    def total_per_person(self):
+        return(self.bill_amount + self.tip_amount)/self.num_people
     # this creates an attributeless property
     # use this to prevent stale attributes for calculated
     # values.
